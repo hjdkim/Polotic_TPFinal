@@ -9,5 +9,6 @@
         <h1>Hello World!</h1>
         <a href="empleados.jsp">Empleados</a>
         <a href="servicios.jsp">Servicios</a>
+        <a href="paquetes.jsp">Paquetes</a>
     </body>
 </html>

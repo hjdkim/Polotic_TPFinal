@@ -27,7 +27,7 @@
             </div>
             <div>
                 <label for="fecha_nac">Fecha de Nacimiento: </label>
-                <input type="datetime-local" name="fecha_nac" id="fecha_nac">
+                <input type="date" name="fecha_nac" id="fecha_nac">
             </div>
             <div>
                 <label for="nacionalidad">Nacionalidad: </label>

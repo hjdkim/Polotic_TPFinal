@@ -22,7 +22,7 @@ public class Controladora {
         controlPersis.crearServicio(serv);
     } 
 
-    public void crearEmpleado(String nombre, String apellido, String direccion, String dni, String fecha_nac, String nacionalidad, String celular, String email, String cargo, Double sueldo, String nombreUsu, String contrasenia) throws ParseException {
+    public void crearEmpleado(String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, Double sueldo, String nombreUsu, String contrasenia) throws ParseException {
         
         Empleado emple = new Empleado();
         Usuario usu = new Usuario();
@@ -32,7 +32,7 @@ public class Controladora {
         emple.setApellido(apellido);
         emple.setDireccion(direccion);
         emple.setDni(dni);
-        emple.setFecha_nac(formatter.parse(fecha_nac));
+        emple.setFecha_nac(fecha_nac);
         emple.setNacionalidad(nacionalidad);
         emple.setCelular(celular);
         emple.setEmail(email);
