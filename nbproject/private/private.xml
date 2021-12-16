@@ -4,15 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/web/empleados.jsp</file>
+            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/logica/Servicio.java</file>
             <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/logica/Controladora.java</file>
-            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/logica/TPFinalCom2.java</file>
-            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/web/index.jsp</file>
             <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/web/servicios.jsp</file>
-            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/persistencia/EmpleadoJpaController.java</file>
+            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/web/index.jsp</file>
             <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/persistencia/ControladoraPersistencia.java</file>
-            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/web/paquetes.jsp</file>
+            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/servlets/SvServicio.java</file>
             <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/servlets/SvEmpleado.java</file>
-            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/logica/Empleado.java</file>
+            <file>file:/C:/Users/HoJoong/Documents/NetBeansProjects/TPFinalCom2/src/java/logica/Paquete.java</file>
         </group>
     </open-files>
 </project-private>

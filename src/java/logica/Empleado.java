@@ -33,9 +33,6 @@ public class Empleado implements Serializable {
     @OneToOne
     private Usuario usu;
 
-    public Empleado() {
-    }
-
     public Empleado(int id_Empleado, String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, double sueldo, Usuario usu) {
         this.id_Empleado = id_Empleado;
         this.nombre = nombre;
@@ -49,6 +46,9 @@ public class Empleado implements Serializable {
         this.cargo = cargo;
         this.sueldo = sueldo;
         this.usu = usu;
+    }
+
+    public Empleado() {
     }
 
     public int getId_Empleado() {
@@ -146,5 +146,5 @@ public class Empleado implements Serializable {
     public void setUsu(Usuario usu) {
         this.usu = usu;
     }
-    
+
 }

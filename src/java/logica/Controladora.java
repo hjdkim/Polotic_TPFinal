@@ -1,15 +1,12 @@
 package logica;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import persistencia.ControladoraPersistencia;
 
 public class Controladora {
     
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
-    SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
-    
     
     public void crearServicio(String nombre, String descripcion_breve, String destino_servicio, Date fecha_servicio, double costo_servico){
         Servicio serv = new Servicio();

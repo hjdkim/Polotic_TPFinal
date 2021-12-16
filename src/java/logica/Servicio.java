@@ -2,11 +2,15 @@ package logica;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,7 +19,7 @@ public class Servicio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int codigoServicio;
+    private int codigo_servicio;
     @Basic
     private String nombre;
     private String descripcion_breve;
@@ -23,12 +27,18 @@ public class Servicio implements Serializable {
     private double costo_servico;
     @Temporal(TemporalType.DATE)
     private Date fecha_servicio;
+    @ManyToMany
+    @JoinTable(
+        name="servicio_paquete",
+        joinColumns = @JoinColumn(name = "codigo_servicio"),
+        inverseJoinColumns = @JoinColumn(name = "codigo_paquete"))
+    private List<Paquete> lista_paquetes;
 
     public Servicio() {
     }
 
     public Servicio(int codigoServicio, String nombre, String descripcion_breve, String destino_servicio, Date fecha_servicio, double costo_servico) {
-        this.codigoServicio = codigoServicio;
+        this.codigo_servicio = codigoServicio;
         this.nombre = nombre;
         this.descripcion_breve = descripcion_breve;
         this.destino_servicio = destino_servicio;
@@ -37,7 +47,7 @@ public class Servicio implements Serializable {
     }
 
     public void setCodigoServicio(int codigoServicio) {
-        this.codigoServicio = codigoServicio;
+        this.codigo_servicio = codigoServicio;
     }
 
     public void setNombre(String nombre) {
@@ -61,7 +71,7 @@ public class Servicio implements Serializable {
     }
 
     public int getCodigoServicio() {
-        return codigoServicio;
+        return codigo_servicio;
     }
 
     public String getNombre() {
@@ -82,6 +92,14 @@ public class Servicio implements Serializable {
 
     public Date getFecha_servicio() {
         return fecha_servicio;
+    }
+
+    public List<Paquete> getLista_paquetes() {
+        return lista_paquetes;
+    }
+
+    public void setLista_paquetes(List<Paquete> lista_paquetes) {
+        this.lista_paquetes = lista_paquetes;
     }
 
 }
