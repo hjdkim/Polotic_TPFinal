@@ -25,6 +25,7 @@ public class Servicio implements Serializable {
     private String descripcion_breve;
     private String destino_servicio;
     private double costo_servico;
+    private boolean servicio_activo;
     @Temporal(TemporalType.DATE)
     private Date fecha_servicio;
     @ManyToMany
@@ -37,15 +38,17 @@ public class Servicio implements Serializable {
     public Servicio() {
     }
 
-    public Servicio(int codigoServicio, String nombre, String descripcion_breve, String destino_servicio, Date fecha_servicio, double costo_servico) {
-        this.codigo_servicio = codigoServicio;
+    public Servicio(int codigo_servicio, String nombre, String descripcion_breve, String destino_servicio, double costo_servico, boolean servicio_activo, Date fecha_servicio, List<Paquete> lista_paquetes) {
+        this.codigo_servicio = codigo_servicio;
         this.nombre = nombre;
         this.descripcion_breve = descripcion_breve;
         this.destino_servicio = destino_servicio;
-        this.fecha_servicio = fecha_servicio;
         this.costo_servico = costo_servico;
+        this.servicio_activo = servicio_activo;
+        this.fecha_servicio = fecha_servicio;
+        this.lista_paquetes = lista_paquetes;
     }
-
+    
     public void setCodigoServicio(int codigoServicio) {
         this.codigo_servicio = codigoServicio;
     }
@@ -68,10 +71,6 @@ public class Servicio implements Serializable {
 
     public void setFecha_servicio(Date fecha_servicio) {
         this.fecha_servicio = fecha_servicio;
-    }
-
-    public int getCodigoServicio() {
-        return codigo_servicio;
     }
 
     public String getNombre() {
@@ -100,6 +99,22 @@ public class Servicio implements Serializable {
 
     public void setLista_paquetes(List<Paquete> lista_paquetes) {
         this.lista_paquetes = lista_paquetes;
+    }
+
+    public int getCodigo_servicio() {
+        return codigo_servicio;
+    }
+
+    public void setCodigo_servicio(int codigo_servicio) {
+        this.codigo_servicio = codigo_servicio;
+    }
+
+    public boolean isServicio_activo() {
+        return servicio_activo;
+    }
+
+    public void setServicio_activo(boolean servicio_activo) {
+        this.servicio_activo = servicio_activo;
     }
 
 }

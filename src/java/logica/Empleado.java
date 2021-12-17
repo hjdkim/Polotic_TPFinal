@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Empleado implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id_Empleado;
@@ -30,10 +30,11 @@ public class Empleado implements Serializable {
     private String email;
     private String cargo;
     private double sueldo;
+    private boolean empleado_activo;
     @OneToOne
     private Usuario usu;
 
-    public Empleado(int id_Empleado, String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, double sueldo, Usuario usu) {
+    public Empleado(int id_Empleado, String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, double sueldo, boolean empleado_activo, Usuario usu) {
         this.id_Empleado = id_Empleado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,6 +46,7 @@ public class Empleado implements Serializable {
         this.email = email;
         this.cargo = cargo;
         this.sueldo = sueldo;
+        this.empleado_activo = empleado_activo;
         this.usu = usu;
     }
 
@@ -137,6 +139,14 @@ public class Empleado implements Serializable {
 
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
+    }
+
+    public boolean isEmpleado_activo() {
+        return empleado_activo;
+    }
+
+    public void setEmpleado_activo(boolean empleado_activo) {
+        this.empleado_activo = empleado_activo;
     }
 
     public Usuario getUsu() {

@@ -2,6 +2,7 @@ package logica;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import persistencia.ControladoraPersistencia;
 
 public class Controladora {
@@ -15,6 +16,7 @@ public class Controladora {
         serv.setDestino_servicio(destino_servicio);
         serv.setFecha_servicio(fecha_servicio);
         serv.setCosto_servico(costo_servico);
+        serv.setServicio_activo(true);
         
         controlPersis.crearServicio(serv);
     } 
@@ -35,6 +37,7 @@ public class Controladora {
         emple.setEmail(email);
         emple.setCargo(cargo);
         emple.setSueldo(sueldo);
+        emple.setEmpleado_activo(true);
         
         //Asigno valores al usuario
         usu.setNombreUsu(nombreUsu);
@@ -44,6 +47,12 @@ public class Controladora {
         emple.setUsu(usu);
         
         controlPersis.crearEmpleado(emple, usu);
+        
+    }
+    
+    public List<Servicio> traerServicios() {
+        
+        return controlPersis.traerServicios();
         
     }
     

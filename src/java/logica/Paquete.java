@@ -17,15 +17,17 @@ public class Paquete implements Serializable {
     private int codigo_paquete;
     @Basic
     private double costo_paquete;
+    private boolean paquete_activo;
     @ManyToMany(mappedBy = "lista_paquetes")
     private List<Servicio> lista_servicios;
 
     public Paquete() {
     }
 
-    public Paquete(int codigo_paquete, double costo_paquete, List<Servicio> lista_servicios) {
+    public Paquete(int codigo_paquete, double costo_paquete, boolean paquete_activo, List<Servicio> lista_servicios) {
         this.codigo_paquete = codigo_paquete;
         this.costo_paquete = costo_paquete;
+        this.paquete_activo = paquete_activo;
         this.lista_servicios = lista_servicios;
     }
 
@@ -51,6 +53,14 @@ public class Paquete implements Serializable {
 
     public void setLista_servicios(List<Servicio> lista_servicios) {
         this.lista_servicios = lista_servicios;
+    }
+
+    public boolean isPaquete_activo() {
+        return paquete_activo;
+    }
+
+    public void setPaquete_activo(boolean paquete_activo) {
+        this.paquete_activo = paquete_activo;
     }
     
     

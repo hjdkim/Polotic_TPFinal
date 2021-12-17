@@ -39,7 +39,7 @@ public class PaqueteJpaController implements Serializable {
             em.getTransaction().begin();
             List<Servicio> attachedLista_servicios = new ArrayList<Servicio>();
             for (Servicio lista_serviciosServicioToAttach : paquete.getLista_servicios()) {
-                lista_serviciosServicioToAttach = em.getReference(lista_serviciosServicioToAttach.getClass(), lista_serviciosServicioToAttach.getCodigoServicio());
+                lista_serviciosServicioToAttach = em.getReference(lista_serviciosServicioToAttach.getClass(), lista_serviciosServicioToAttach.getCodigo_servicio());
                 attachedLista_servicios.add(lista_serviciosServicioToAttach);
             }
             paquete.setLista_servicios(attachedLista_servicios);
@@ -66,7 +66,7 @@ public class PaqueteJpaController implements Serializable {
             List<Servicio> lista_serviciosNew = paquete.getLista_servicios();
             List<Servicio> attachedLista_serviciosNew = new ArrayList<Servicio>();
             for (Servicio lista_serviciosNewServicioToAttach : lista_serviciosNew) {
-                lista_serviciosNewServicioToAttach = em.getReference(lista_serviciosNewServicioToAttach.getClass(), lista_serviciosNewServicioToAttach.getCodigoServicio());
+                lista_serviciosNewServicioToAttach = em.getReference(lista_serviciosNewServicioToAttach.getClass(), lista_serviciosNewServicioToAttach.getCodigo_servicio());
                 attachedLista_serviciosNew.add(lista_serviciosNewServicioToAttach);
             }
             lista_serviciosNew = attachedLista_serviciosNew;

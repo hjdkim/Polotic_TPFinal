@@ -53,7 +53,7 @@ public class ServicioJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = servicio.getCodigoServicio();
+                int id = servicio.getCodigo_servicio();
                 if (findServicio(id) == null) {
                     throw new NonexistentEntityException("The servicio with id " + id + " no longer exists.");
                 }
@@ -74,7 +74,7 @@ public class ServicioJpaController implements Serializable {
             Servicio servicio;
             try {
                 servicio = em.getReference(Servicio.class, id);
-                servicio.getCodigoServicio();
+                servicio.getCodigo_servicio();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The servicio with id " + id + " no longer exists.", enfe);
             }
