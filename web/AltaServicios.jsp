@@ -30,7 +30,7 @@
                 <input type="date" name="fecha_servicio" id="fecha_servicio">
             </div>
             <div>
-                <button type="submit"> Enviar </button>
+                <button type="submit">Enviar</button>
             </div>
 
         </form>

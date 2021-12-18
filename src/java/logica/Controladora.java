@@ -47,13 +47,14 @@ public class Controladora {
         emple.setUsu(usu);
         
         controlPersis.crearEmpleado(emple, usu);
-        
     }
     
     public List<Servicio> traerServicios() {
-        
         return controlPersis.traerServicios();
-        
+    }
+    
+    public void eliminarServicio(int codigoServ) {
+        controlPersis.eliminarServicio(codigoServ);
     }
     
 }

@@ -1,10 +1,13 @@
 package persistencia;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import logica.Empleado;
 import logica.Paquete;
 import logica.Servicio;
 import logica.Usuario;
+import logica.exceptions.NonexistentEntityException;
 
 public class ControladoraPersistencia {
 
@@ -27,7 +30,16 @@ public class ControladoraPersistencia {
     public List<Servicio> traerServicios() {
         return servicioJPA.findServicioEntities();
     }
-
+    
+    public void eliminarServicio(int codigoServ) {
+        try {
+            servicioJPA.destroy(codigoServ);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     public void crearPaquete(Paquete paq) {
         paqueteJPA.create(paq);
     }

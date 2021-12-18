@@ -1,3 +1,4 @@
+<%@page import="java.util.TimeZone"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
@@ -20,12 +21,21 @@
                     <th>Destino</th>
                     <th>Fecha</th>
                     <th>Costo</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <% Controladora control = new Controladora();
+                <% 
+                //Instancia la lista desde el atributo de la sesion seteado en Servlet.
+                HttpSession misession = request.getSession();
+                List<Servicio> listaServicios = (List) misession.getAttribute("listaServicios");
+                
+                //Formatea la fecha y el timezone. (Da un día menos sin el TZ.)
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                List <Servicio> listaServicios = control.traerServicios();
+                sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+                
+                //Iteración para mostrar los servicios
                 for(Servicio serv : listaServicios) {
                 %>    
                 <tr>
@@ -35,6 +45,10 @@
                     String destServ = serv.getDestino_servicio();
                     String fechaServ = sdf.format(serv.getFecha_servicio());
                     double costoServ = serv.getCosto_servico();
+                    Boolean activoServ = serv.isServicio_activo();
+                    
+                    //Filtro para mostrar solo servicios activos
+                    if(activoServ == true){
                     %>
                     <td><%=codigoServ %></td>
                     <td><%=nombreServ %></td>
@@ -42,8 +56,21 @@
                     <td><%=destServ %></td>
                     <td><%=fechaServ %></td>
                     <td><%=costoServ %></td>
+                    <td>
+                        <form action="SvModificar" method="POST">
+                            <input type="hidden" name="codigoServ" value="<%=codigoServ %>">
+                            <button type="submit">Modificar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="SvEliminar" method="POST">
+                            <input type="hidden" name="codigoServ" value="<%=codigoServ %>">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
-                <%}%>
+                    <% }
+                }%>
             </tbody>
         </table>
     </body>

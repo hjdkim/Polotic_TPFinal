@@ -8,7 +8,9 @@
     <body>
         <h1>Hello World!</h1>
         <a href="VerEmpleados.jsp">Empleados</a>
-        <a href="VerServicios.jsp">Servicios</a>
+        <form action="SvServicio" method="GET">
+            <a href="SvServicio">Servicios</a>
+        </form>
         <a href="VerPaquetes.jsp">Paquetes</a>
     </body>
 </html>
