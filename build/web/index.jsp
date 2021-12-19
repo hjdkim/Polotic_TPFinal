@@ -6,11 +6,11 @@
         <title>TP Final</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Super Archi Mega Turismo</h1>
         <a href="VerEmpleados.jsp">Empleados</a>
         <form action="SvServicio" method="GET">
             <a href="SvServicio">Servicios</a>
         </form>
-        <a href="VerPaquetes.jsp">Paquetes</a>
+        <a href="SvPaquete">Paquetes</a>
     </body>
 </html>

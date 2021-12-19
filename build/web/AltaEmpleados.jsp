@@ -6,6 +6,15 @@
         <title>Administración de Empleados</title>
     </head>
     <body>
+        
+        <%
+            //Verifica si usuario está guardado como atributo de la session (logeado)
+            HttpSession misession = request.getSession();
+            String usuario = (String) misession.getAttribute("usuario");
+            if (usuario == null) {
+                response.sendRedirect("login.jsp");
+            } else {%>
+        
         <h1>Alta Empleados</h1>
         <p>Ingrese los datos de su empleado</p>
         <form action="SvEmpleado" method="POST">
@@ -58,9 +67,10 @@
                 <input type="password" name="contrasenia" id="contrasenia">
             </div>
             <div>
-                <button type="submit"> Enviar </button>
+                <button type="submit">Enviar</button>
             </div>
             
         </form>
+            <% } %>
     </body>
 </html>

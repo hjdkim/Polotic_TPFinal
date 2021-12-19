@@ -6,6 +6,15 @@
         <title>Servicios</title>
     </head>
     <body>
+        
+        <%
+            //Verifica si usuario está guardado como atributo de la session (logeado)
+            HttpSession misession = request.getSession();
+            String usuario = (String) misession.getAttribute("usuario");
+            if (usuario == null) {
+                response.sendRedirect("login.jsp");
+            } else {%>
+        
         <h1>Alta Servicios</h1>
         <p>Ingrese los datos del servicio</p>
         <form action="SvServicio" method="POST">
@@ -34,5 +43,6 @@
             </div>
 
         </form>
+        <% } %>
     </body>
 </html>

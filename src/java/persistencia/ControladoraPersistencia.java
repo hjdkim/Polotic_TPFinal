@@ -17,7 +17,11 @@ public class ControladoraPersistencia {
     ServicioJpaController servicioJPA = new ServicioJpaController();
     UsuarioJpaController usuJPA = new UsuarioJpaController();
     VentaJpaController ventaJPA = new VentaJpaController();
-
+    
+    public List<Usuario> traerUsuarios() {
+        return usuJPA.findUsuarioEntities();
+    }
+    
     public void crearEmpleado(Empleado emple, Usuario usu) {
         usuJPA.create(usu);
         empleJPA.create(emple);
@@ -31,6 +35,10 @@ public class ControladoraPersistencia {
         return servicioJPA.findServicioEntities();
     }
     
+    public Servicio traerServicios(int id) {
+        return servicioJPA.findServicio(id);
+    }
+    
     public void eliminarServicio(int codigoServ) {
         try {
             servicioJPA.destroy(codigoServ);
@@ -39,9 +47,12 @@ public class ControladoraPersistencia {
         }
     }
     
-    
     public void crearPaquete(Paquete paq) {
         paqueteJPA.create(paq);
     }
-
+    
+    public List<Paquete> traerPaquetes() {
+        return paqueteJPA.findPaqueteEntities();
+    }
+    
 }
