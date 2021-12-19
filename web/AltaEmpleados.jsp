@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Administración de Empleados</title>
+        <title>Alta Empleados</title>
     </head>
     <body>
         
@@ -16,7 +16,7 @@
             } else {%>
         
         <h1>Alta Empleados</h1>
-        <p>Ingrese los datos de su empleado</p>
+        <p>Ingrese los datos del empleado</p>
         <form action="SvEmpleado" method="POST">
             <div>
                 <label for="nombre">Nombre: </label>

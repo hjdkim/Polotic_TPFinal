@@ -12,7 +12,7 @@
         <title>Servicios</title>
     </head>
     <body>
-        
+
         <%
             //Verifica si usuario está guardado como atributo de la session (logeado)
             HttpSession misession = request.getSession();
@@ -20,7 +20,7 @@
             if (usuario == null) {
                 response.sendRedirect("login.jsp");
             } else {%>
-            
+        <h1>Servicios</h1>
         <table>
             <thead>
                 <tr>
@@ -52,7 +52,7 @@
                         String descServ = serv.getDescripcion_breve();
                         String destServ = serv.getDestino_servicio();
                         String fechaServ = sdf.format(serv.getFecha_servicio());
-                        double costoServ = serv.getCosto_servico();
+                        double costoServ = serv.getCosto_servicio();
                         Boolean activoServ = serv.isServicio_activo();
 
                         //Filtro para mostrar solo servicios activos
@@ -66,7 +66,7 @@
                     <td><%=costoServ%></td>
                     <td>
                         <form action="SvModificar" method="POST">
-                            <input type="hidden" name="modificarServ" value="<%=codigoServ%>">
+                            <input type="hidden" name="pedirModificarServ" value="<%=codigoServ%>">
                             <button type="submit">Modificar</button>
                         </form>
                     </td>
@@ -78,9 +78,9 @@
                     </td>
                 </tr>
                 <% }
-                        }%>
+                    }%>
             </tbody>
         </table>
-            <% } %>
+        <% }%>
     </body>
 </html>

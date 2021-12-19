@@ -3,6 +3,7 @@ package persistencia;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logica.Cliente;
 import logica.Empleado;
 import logica.Paquete;
 import logica.Servicio;
@@ -55,6 +56,14 @@ public class ControladoraPersistencia {
         return servicioJPA.findServicio(id);
     }
     
+    public void modificarServicio(Servicio serv) {
+        try {
+            servicioJPA.edit(serv);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void eliminarServicio(int codigoServ) {
         try {
             servicioJPA.destroy(codigoServ);
@@ -74,6 +83,34 @@ public class ControladoraPersistencia {
     public void eliminarPaquete(int codigoPaque) {
         try {
             paqueteJPA.destroy(codigoPaque);
+        } catch (persistencia.exceptions.NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void crearCliente(Cliente cli) {
+        clienteJPA.create(cli);
+    }
+    
+    public List<Cliente> traerClientes() {
+        return clienteJPA.findClienteEntities();
+    }
+    
+    public Cliente traerCliente(int id) {
+        return clienteJPA.findCliente(id);
+    }
+    
+    public void modificarCliente(Cliente cli) {
+        try {
+            clienteJPA.edit(cli);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void eliminarCliente(int id) {
+        try {
+            clienteJPA.destroy(id);
         } catch (persistencia.exceptions.NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }

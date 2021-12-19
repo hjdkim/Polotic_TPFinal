@@ -63,8 +63,20 @@ public class SvEliminar extends HttpServlet {
             //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
             request.getSession().setAttribute("listaPaquetes", control.traerPaquetes());
             response.sendRedirect("SvPaquete");
-
         }
+        
+        //Elimina el cliente si se aprieta el botón 'eliminarCli'
+        if (request.getParameter("eliminarCli") != null) {
+
+            //Trae el código de servicio como parametro y lo elimina
+            int idCli = Integer.parseInt(request.getParameter("eliminarCli"));
+            control.eliminarCliente(idCli);
+
+            //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
+            request.getSession().setAttribute("listaClientes", control.traerClientes());
+            response.sendRedirect("SvCliente");
+        }
+        
     }
 
     @Override

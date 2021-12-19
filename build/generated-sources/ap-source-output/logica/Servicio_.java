@@ -7,13 +7,13 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import logica.Paquete;
 
-@Generated(value="EclipseLink-2.7.7.v20200504-rNA", date="2021-12-19T18:03:07")
+@Generated(value="EclipseLink-2.7.7.v20200504-rNA", date="2021-12-19T19:55:42")
 @StaticMetamodel(Servicio.class)
 public class Servicio_ { 
 
     public static volatile SingularAttribute<Servicio, Date> fecha_servicio;
     public static volatile ListAttribute<Servicio, Paquete> lista_paquetes;
-    public static volatile SingularAttribute<Servicio, Double> costo_servico;
+    public static volatile SingularAttribute<Servicio, Double> costo_servicio;
     public static volatile SingularAttribute<Servicio, Integer> codigo_servicio;
     public static volatile SingularAttribute<Servicio, Boolean> servicio_activo;
     public static volatile SingularAttribute<Servicio, String> nombre;

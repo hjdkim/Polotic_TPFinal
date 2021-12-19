@@ -7,10 +7,10 @@
     </head>
     <body>
         <h1>Super Archi Mega Turismo</h1>
+        <a href="SvVenta">Venta</a>
+        <a href="SvCliente">Clientes</a>
         <a href="SvEmpleado">Empleados</a>
-        <form action="SvServicio" method="GET">
-            <a href="SvServicio">Servicios</a>
-        </form>
+        <a href="SvServicio">Servicios</a>
         <a href="SvPaquete">Paquetes</a>
     </body>
 </html>

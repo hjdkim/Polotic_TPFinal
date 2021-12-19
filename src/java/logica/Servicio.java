@@ -23,7 +23,7 @@ public class Servicio implements Serializable {
     private String nombre;
     private String descripcion_breve;
     private String destino_servicio;
-    private double costo_servico;
+    private double costo_servicio;
     private boolean servicio_activo;
     @Temporal(TemporalType.DATE)
     private Date fecha_servicio;
@@ -38,7 +38,7 @@ public class Servicio implements Serializable {
         this.nombre = nombre;
         this.descripcion_breve = descripcion_breve;
         this.destino_servicio = destino_servicio;
-        this.costo_servico = costo_servico;
+        this.costo_servicio = costo_servico;
         this.servicio_activo = servicio_activo;
         this.fecha_servicio = fecha_servicio;
         this.lista_paquetes = lista_paquetes;
@@ -60,8 +60,8 @@ public class Servicio implements Serializable {
         this.destino_servicio = destino_servicio;
     }
 
-    public void setCosto_servico(double costo_servico) {
-        this.costo_servico = costo_servico;
+    public void setCosto_servicio(double costo_servicio) {
+        this.costo_servicio = costo_servicio;
     }
 
     public void setFecha_servicio(Date fecha_servicio) {
@@ -80,8 +80,8 @@ public class Servicio implements Serializable {
         return destino_servicio;
     }
 
-    public double getCosto_servico() {
-        return costo_servico;
+    public double getCosto_servicio() {
+        return costo_servicio;
     }
 
     public Date getFecha_servicio() {

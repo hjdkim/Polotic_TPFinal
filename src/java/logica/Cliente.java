@@ -24,13 +24,14 @@ public class Cliente implements Serializable {
     private String nacionalidad;
     private String celular;
     private String email;
+    private boolean cliente_activo;
     @Temporal(TemporalType.DATE)
     private Date fecha_nac;
 
     public Cliente() {
     }
 
-    public Cliente(int id_cliente, String nombre, String apellido, String direccion, String dni, String nacionalidad, String celular, String email, Date fecha_nac) {
+    public Cliente(int id_cliente, String nombre, String apellido, String direccion, String dni, String nacionalidad, String celular, String email, boolean cliente_activo, Date fecha_nac) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -39,6 +40,7 @@ public class Cliente implements Serializable {
         this.nacionalidad = nacionalidad;
         this.celular = celular;
         this.email = email;
+        this.cliente_activo = cliente_activo;
         this.fecha_nac = fecha_nac;
     }
 
@@ -113,6 +115,13 @@ public class Cliente implements Serializable {
     public void setFecha_nac(Date fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
-    
+
+    public boolean isCliente_activo() {
+        return cliente_activo;
+    }
+
+    public void setCliente_activo(boolean cliente_activo) {
+        this.cliente_activo = cliente_activo;
+    }
     
 }

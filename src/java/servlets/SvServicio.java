@@ -48,11 +48,9 @@ public class SvServicio extends HttpServlet {
             String destino = request.getParameter("destino");
             Double costo = Double.parseDouble(request.getParameter("costo"));
             Date fecha_servicio = sdf.parse(request.getParameter("fecha_servicio"));
-            String nombreUsu = request.getParameter("nombreUsu");
-            String contrasenia = request.getParameter("contrasenia");
 
             control.crearServicio(nombre, descripcion, destino, fecha_servicio, costo);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("SvServicio");
         } catch (ParseException ex) {
             Logger.getLogger(SvEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
