@@ -55,4 +55,12 @@ public class ControladoraPersistencia {
         return paqueteJPA.findPaqueteEntities();
     }
     
+    public void eliminarPaquete(int codigoPaque) {
+        try {
+            paqueteJPA.destroy(codigoPaque);
+        } catch (persistencia.exceptions.NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

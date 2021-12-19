@@ -68,7 +68,7 @@
             </td>
             <td>
                 <form action="SvEliminar" method="POST">
-                    <input type="hidden" name="codigoPaquete" value="<%=codigoPaquete%>">
+                    <input type="hidden" name="eliminarPaque" value="<%=codigoPaquete%>">
                     <button type="submit">Eliminar</button>
                 </form>
             </td>

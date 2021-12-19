@@ -7,18 +7,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
 public class Paquete implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo_paquete;
     @Basic
     private double costo_paquete;
     private boolean paquete_activo;
-    @ManyToMany(mappedBy = "lista_paquetes")
+    @ManyToMany
+    @JoinTable(
+            name = "paquete_servicio",
+            joinColumns = @JoinColumn(name = "codigo_paquete"),
+            inverseJoinColumns = @JoinColumn(name = "codigo_servicio"))
     private List<Servicio> lista_servicios;
 
     public Paquete() {
@@ -62,6 +68,5 @@ public class Paquete implements Serializable {
     public void setPaquete_activo(boolean paquete_activo) {
         this.paquete_activo = paquete_activo;
     }
-    
-    
+
 }

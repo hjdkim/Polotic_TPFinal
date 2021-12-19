@@ -66,13 +66,13 @@
                     <td><%=costoServ%></td>
                     <td>
                         <form action="SvModificar" method="POST">
-                            <input type="hidden" name="codigoServ" value="<%=codigoServ%>">
+                            <input type="hidden" name="modificarServ" value="<%=codigoServ%>">
                             <button type="submit">Modificar</button>
                         </form>
                     </td>
                     <td>
                         <form action="SvEliminar" method="POST">
-                            <input type="hidden" name="codigoServ" value="<%=codigoServ%>">
+                            <input type="hidden" name="eliminarServ" value="<%=codigoServ%>">
                             <button type="submit">Eliminar</button>
                         </form>
                     </td>

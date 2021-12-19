@@ -82,6 +82,10 @@ public class Controladora {
         return controlPersis.traerPaquetes();
     }
     
+    public void eliminarPaquete(int codigoPaque) {
+        controlPersis.eliminarPaquete(codigoPaque);
+    }
+    
     
     public void crearEmpleado(String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, Double sueldo, String nombreUsu, String contrasenia) throws ParseException {
 

@@ -11,10 +11,10 @@ import logica.Controladora;
 
 @WebServlet(name = "SvEliminar", urlPatterns = {"/SvEliminar"})
 public class SvEliminar extends HttpServlet {
-    
+
     //Instancia de la controladora lógica
     Controladora control = new Controladora();
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
@@ -28,13 +28,31 @@ public class SvEliminar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Trae el código de servicio como parametro y lo elimina
-        int codigoServ = Integer.parseInt(request.getParameter("codigoServ"));
-        control.eliminarServicio(codigoServ);
-        
-        //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
-        request.getSession().setAttribute("listaServicios", control.traerServicios());
-        response.sendRedirect("VerServicios.jsp");
+
+        //Elimina el servicio si se aprieta el botón 'eliminarServ'
+        if (request.getParameter("eliminarServ") != null) {
+
+            //Trae el código de servicio como parametro y lo elimina
+            int codigoServ = Integer.parseInt(request.getParameter("eliminarServ"));
+            control.eliminarServicio(codigoServ);
+
+            //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
+            request.getSession().setAttribute("listaServicios", control.traerServicios());
+            response.sendRedirect("SvServicio");
+        }
+
+        //Elimina el paquete si se aprieta el botón 'eliminarPaque'
+        if (request.getParameter("eliminarPaque") != null) {
+
+            //Trae el código de paquete como parametro y lo elimina
+            int codigoPaque = Integer.parseInt(request.getParameter("eliminarPaque"));
+            control.eliminarPaquete(codigoPaque);
+
+            //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
+            request.getSession().setAttribute("listaPaquetes", control.traerPaquetes());
+            response.sendRedirect("SvPaquete");
+
+        }
     }
 
     @Override

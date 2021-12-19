@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,11 +27,7 @@ public class Servicio implements Serializable {
     private boolean servicio_activo;
     @Temporal(TemporalType.DATE)
     private Date fecha_servicio;
-    @ManyToMany
-    @JoinTable(
-        name="servicio_paquete",
-        joinColumns = @JoinColumn(name = "codigo_servicio"),
-        inverseJoinColumns = @JoinColumn(name = "codigo_paquete"))
+    @ManyToMany(mappedBy = "lista_servicios", cascade = CascadeType.PERSIST)
     private List<Paquete> lista_paquetes;
 
     public Servicio() {
@@ -48,7 +43,7 @@ public class Servicio implements Serializable {
         this.fecha_servicio = fecha_servicio;
         this.lista_paquetes = lista_paquetes;
     }
-    
+
     public void setCodigoServicio(int codigoServicio) {
         this.codigo_servicio = codigoServicio;
     }
