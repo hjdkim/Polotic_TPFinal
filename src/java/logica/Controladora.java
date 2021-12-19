@@ -9,7 +9,7 @@ import persistencia.ControladoraPersistencia;
 public class Controladora {
 
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
-
+    
     public boolean verificarUsuario(String usuario, String contrasenia) {
         //Trae la lista de usuarios con controladora de persistencia
         List<Usuario> listaUsuarios = controlPersis.traerUsuarios();
@@ -25,6 +25,46 @@ public class Controladora {
         return false;
     }
 
+    public void crearEmpleado(String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, Double sueldo, String nombreUsu, String contrasenia) throws ParseException {
+
+        Empleado emple = new Empleado();
+        Usuario usu = new Usuario();
+
+        //Asigna valores al empleado
+        emple.setNombre(nombre);
+        emple.setApellido(apellido);
+        emple.setDireccion(direccion);
+        emple.setDni(dni);
+        emple.setFecha_nac(fecha_nac);
+        emple.setNacionalidad(nacionalidad);
+        emple.setCelular(celular);
+        emple.setEmail(email);
+        emple.setCargo(cargo);
+        emple.setSueldo(sueldo);
+        emple.setEmpleado_activo(true);
+
+        //Asigna valores al usuario
+        usu.setNombreUsu(nombreUsu);
+        usu.setContrasenia(contrasenia);
+
+        //Asigna usuario al empleado
+        emple.setUsu(usu);
+
+        controlPersis.crearEmpleado(emple, usu);
+    }
+    
+    public List<Empleado> traerEmpleados() {
+        return controlPersis.traerEmpleados();
+    }
+    
+    public List<Usuario> traerUsuarios() {
+        return controlPersis.traerUsuarios();
+    }
+    
+    public void eliminarEmpleado(int id) {
+        controlPersis.eliminarEmpleado(id);
+    }
+    
     public void crearServicio(String nombre, String descripcion_breve, String destino_servicio, Date fecha_servicio, double costo_servico) {
         Servicio serv = new Servicio();
         //Setea los atributos al servicio y se lo pasa a la controladora de persistencia para crear
@@ -87,32 +127,6 @@ public class Controladora {
     }
     
     
-    public void crearEmpleado(String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, Double sueldo, String nombreUsu, String contrasenia) throws ParseException {
-
-        Empleado emple = new Empleado();
-        Usuario usu = new Usuario();
-
-        //Asigna valores al empleado
-        emple.setNombre(nombre);
-        emple.setApellido(apellido);
-        emple.setDireccion(direccion);
-        emple.setDni(dni);
-        emple.setFecha_nac(fecha_nac);
-        emple.setNacionalidad(nacionalidad);
-        emple.setCelular(celular);
-        emple.setEmail(email);
-        emple.setCargo(cargo);
-        emple.setSueldo(sueldo);
-        emple.setEmpleado_activo(true);
-
-        //Asigna valores al usuario
-        usu.setNombreUsu(nombreUsu);
-        usu.setContrasenia(contrasenia);
-
-        //Asigna usuario al empleado
-        emple.setUsu(usu);
-
-        controlPersis.crearEmpleado(emple, usu);
-    }
+    
 
 }

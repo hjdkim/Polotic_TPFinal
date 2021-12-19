@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -11,7 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import logica.Controladora;
+import logica.Empleado;
+import logica.Servicio;
+import logica.Usuario;
 
 @WebServlet(name = "SvEmpleado", urlPatterns = {"/SvEmpleado"})
 public class SvEmpleado extends HttpServlet {
@@ -26,7 +31,11 @@ public class SvEmpleado extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //Trae la lista de empleados y la guarda como atributo en la session.
+        List<Empleado> listaEmpleados = control.traerEmpleados();
+        HttpSession misession = request.getSession();
+        misession.setAttribute("listaEmpleados", listaEmpleados);
+        response.sendRedirect("VerEmpleados.jsp");
     }
 
     @Override

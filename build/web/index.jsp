@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Super Archi Mega Turismo</h1>
-        <a href="VerEmpleados.jsp">Empleados</a>
+        <a href="SvEmpleado">Empleados</a>
         <form action="SvServicio" method="GET">
             <a href="SvServicio">Servicios</a>
         </form>

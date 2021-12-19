@@ -29,6 +29,18 @@ public class SvEliminar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //Elimina el empleado si se aprieta el botón 'eliminarEmple'
+        if (request.getParameter("eliminarEmple") != null) {
+
+            //Trae el código de servicio como parametro y lo elimina
+            int idEmple = Integer.parseInt(request.getParameter("eliminarEmple"));
+            control.eliminarEmpleado(idEmple);
+
+            //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
+            request.getSession().setAttribute("listaEmpleados", control.traerEmpleados());
+            response.sendRedirect("SvEmpleado");
+        }
+
         //Elimina el servicio si se aprieta el botón 'eliminarServ'
         if (request.getParameter("eliminarServ") != null) {
 

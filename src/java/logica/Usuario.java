@@ -1,7 +1,6 @@
 package logica;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,7 @@ public class Usuario implements Serializable {
     @Basic
     private String nombreUsu;
     private String contrasenia;
-
+    
     public Usuario() {
     }
 
@@ -50,6 +49,5 @@ public class Usuario implements Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-    
     
 }

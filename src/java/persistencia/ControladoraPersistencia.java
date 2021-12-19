@@ -22,11 +22,27 @@ public class ControladoraPersistencia {
         return usuJPA.findUsuarioEntities();
     }
     
+    public Usuario traerUsuario(int id) {
+        return usuJPA.findUsuario(id);
+    }
+    
     public void crearEmpleado(Empleado emple, Usuario usu) {
         usuJPA.create(usu);
         empleJPA.create(emple);
     }
 
+    public List<Empleado> traerEmpleados() {
+        return empleJPA.findEmpleadoEntities();
+    }
+    
+    public void eliminarEmpleado(int id) {
+        try {
+            empleJPA.destroy(id);
+        } catch (persistencia.exceptions.NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void crearServicio(Servicio serv) {
         servicioJPA.create(serv);
     }
