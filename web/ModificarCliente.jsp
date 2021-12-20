@@ -59,7 +59,7 @@
             </div>
             <div>
                 <input type="hidden" name="modificarCli" value="<%=cli.getId_cliente()%>">
-                <button type="submit">Enviar</button>
+                <button type="submit">Modificar</button>
             </div>
 
         </form>

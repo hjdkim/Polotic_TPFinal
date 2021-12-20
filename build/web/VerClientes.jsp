@@ -18,6 +18,11 @@
                 response.sendRedirect("login.jsp");
             } else {%>
         <h1>Clientes</h1>
+        <div>
+            <form action="AltaClientes.jsp">
+                <button type="submit">Nuevo Cliente</button>
+            </form>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -33,7 +38,7 @@
                 <%
                     //Instancia la lista desde el atributo de la sesion seteado en Servlet.
                     List<Cliente> listaClientes = (List) misession.getAttribute("listaClientes");
-                    
+
                     //Formatea la fecha y el timezone. (Da un día menos sin el TZ.)
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -74,12 +79,12 @@
                     </td>
                 </tr>
                 <% }
-                        }%>
-                
-                
+                    }%>
+
+
             </tbody>
         </table>
-        
+
         <% }%>
     </body>
 

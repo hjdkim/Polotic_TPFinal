@@ -61,6 +61,14 @@ public class Controladora {
         return controlPersis.traerUsuarios();
     }
 
+    public Empleado traerEmpleado(int id) {
+        return controlPersis.traerEmpleado(id);
+    }
+    
+    public void modificarEmpleado(Empleado emple, Usuario usu) {
+        controlPersis.modificarEmpleado(emple, usu);
+    }
+    
     public void eliminarEmpleado(int id) {
         controlPersis.eliminarEmpleado(id);
     }
@@ -94,42 +102,22 @@ public class Controladora {
         controlPersis.eliminarServicio(codigoServ);
     }
 
-    public void crearPaquete(String[] lista_codigos) {
-        Paquete paque = new Paquete();
-        List<Servicio> listaParaPaquete = new ArrayList<Servicio>();
-
-        //Trae toda la lista de servicios
-        List<Servicio> listaServicios = traerServicios();
-
-        double precio_original = 0;
-
-        //Recorre la lista de servicios y agrega a la lista para paquetes si el código coincide.
-        for (String codigo : lista_codigos) {
-            for (Servicio serv : listaServicios) {
-                if (Integer.parseInt(codigo) == serv.getCodigo_servicio()) {
-                    listaParaPaquete.add(serv);
-                    precio_original += serv.getCosto_servicio(); //Suma el precio
-                }
-            }
-        }
-
-        //Aplica el descuento
-        double descuento = precio_original * 0.1;
-        double precio_final = precio_original - descuento;
-
-        //Asigna valores al paquete y se lo pasa a la controladora de persistencia para crear
-        paque.setCosto_paquete(precio_final);
-        paque.setPaquete_activo(true);
-        paque.setLista_servicios(listaParaPaquete);
-
+    public void crearPaquete(Paquete paque) {
         controlPersis.crearPaquete(paque);
-
     }
 
     public List<Paquete> traerPaquetes() {
         return controlPersis.traerPaquetes();
     }
 
+    public Paquete traerPaquete(int id) {
+        return controlPersis.traerPaquete(id);
+    }
+    
+    public void modificarPaquete(Paquete paque) {
+        controlPersis.modificarPaquete(paque);
+    }
+    
     public void eliminarPaquete(int codigoPaque) {
         controlPersis.eliminarPaquete(codigoPaque);
     }

@@ -20,7 +20,13 @@
             if (usuario == null) {
                 response.sendRedirect("login.jsp");
             } else {%>
+
         <h1>Servicios</h1>
+        <div>
+            <form action="AltaServicios.jsp">
+                <button type="submit">Nuevo Servicio</button>
+            </form>
+        </div>
         <table>
             <thead>
                 <tr>

@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,7 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Cliente;
 import logica.Controladora;
+import logica.Empleado;
+import logica.Paquete;
 import logica.Servicio;
+import logica.Usuario;
 
 @WebServlet(name = "SvModificar", urlPatterns = {"/SvModificar"})
 public class SvModificar extends HttpServlet {
@@ -80,9 +85,9 @@ public class SvModificar extends HttpServlet {
         //Carga el cliente a modificar si se aprieta el botón 'pedirModificarCli'
         if (request.getParameter("pedirModificarCli") != null) {
 
-            //Trae el cliente con el código y lo guarda en la sesión
-            int codigoCli = Integer.parseInt(request.getParameter("pedirModificarCli"));
-            Cliente cli = control.traerCliente(codigoCli);
+            //Trae el cliente con el id y lo guarda en la sesión
+            int idCli = Integer.parseInt(request.getParameter("pedirModificarCli"));
+            Cliente cli = control.traerCliente(idCli);
             HttpSession misession = request.getSession();
             misession.setAttribute("cliAModificar", cli);
             response.sendRedirect("ModificarCliente.jsp");
@@ -101,7 +106,7 @@ public class SvModificar extends HttpServlet {
                 String celular = request.getParameter("celular");
                 String email = request.getParameter("email");
 
-                //Trae al cliente con el código de cliente
+                //Trae al cliente con el ID de cliente
                 Cliente cli = control.traerCliente(Integer.parseInt(request.getParameter("modificarCli")));
                 //Setea los atributos al cliente y se lo pasa a la controladora de persistencia para modificar
                 cli.setNombre(nombre);
@@ -120,6 +125,111 @@ public class SvModificar extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(SvEmpleado.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+
+        //Carga el empleado a modificar si se aprieta el botón 'pedirModificarEmple'
+        if (request.getParameter("pedirModificarEmple") != null) {
+
+            //Trae el empleado con el id y lo guarda en la sesión
+            int idEmple = Integer.parseInt(request.getParameter("pedirModificarEmple"));
+            Empleado emple = control.traerEmpleado(idEmple);
+            HttpSession misession = request.getSession();
+            misession.setAttribute("empleAModificar", emple);
+            response.sendRedirect("ModificarEmpleado.jsp");
+        }
+
+        //Modifica el empleado si se aprieta el botón 'modificarCli'
+        if (request.getParameter("modificarEmple") != null) {
+            try {
+                //Trae los parámetros del formulario y modifica al empleado con los mismos.
+                String nombre = request.getParameter("nombre");
+                String apellido = request.getParameter("apellido");
+                String direccion = request.getParameter("direccion");
+                String dni = request.getParameter("dni");
+                Date fecha_nac = sdf.parse(request.getParameter("fecha_nac"));
+                String nacionalidad = request.getParameter("nacionalidad");
+                String celular = request.getParameter("celular");
+                String email = request.getParameter("email");
+                String cargo = request.getParameter("cargo");
+                Double sueldo = Double.parseDouble(request.getParameter("sueldo"));
+                String nombreUsu = request.getParameter("nombreUsu");
+                String contrasenia = request.getParameter("contrasenia");
+
+                //Trae al empleado y su usuario con el ID
+                Empleado emple = control.traerEmpleado(Integer.parseInt(request.getParameter("modificarEmple")));
+                Usuario usu = emple.getUsu();
+
+                //Setea los atributos al cliente y se lo pasa a la controladora de persistencia para modificar
+                emple.setNombre(nombre);
+                emple.setApellido(apellido);
+                emple.setDireccion(direccion);
+                emple.setDni(dni);
+                emple.setFecha_nac(fecha_nac);
+                emple.setNacionalidad(nacionalidad);
+                emple.setCelular(celular);
+                emple.setEmail(email);
+                emple.setCargo(cargo);
+                emple.setSueldo(sueldo);
+                usu.setNombreUsu(nombreUsu);
+                usu.setContrasenia(contrasenia);
+
+                control.modificarEmpleado(emple, usu);
+
+                //Redirecciona al servlet SvEmpleado
+                response.sendRedirect("SvEmpleado");
+            } catch (ParseException ex) {
+                Logger.getLogger(SvEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        //Carga el paquete a modificar si se aprieta el botón 'pedirModificarPaque'
+        if (request.getParameter("pedirModificarPaque") != null) {
+
+            //Trae el paquete con el código y lo guarda en la sesión
+            int codigoPaque = Integer.parseInt(request.getParameter("pedirModificarPaque"));
+            Paquete paque = control.traerPaquete(codigoPaque);
+            HttpSession misession = request.getSession();
+            misession.setAttribute("paqueAModificar", paque);
+            response.sendRedirect("ModificarPaquete.jsp");
+        }
+
+        //Modifica el servicio si se aprieta el botón 'modificarServ'
+        if (request.getParameter("modificarPaque") != null) {
+            //Trae los parámetros del formulario y modifica al servicio con los mismos.
+            String[] lista_codigos = request.getParameterValues("servicio");
+
+            Paquete paque = control.traerPaquete(Integer.parseInt(request.getParameter("modificarPaque")));
+
+            List<Servicio> listaParaPaquete = new ArrayList<Servicio>();
+
+            //Trae toda la lista de servicios
+            List<Servicio> listaServicios = control.traerServicios();
+
+            double precio_original = 0;
+
+            //Recorre la lista de servicios y agrega a la lista para paquetes si el código coincide.
+            for (String codigo : lista_codigos) {
+                for (Servicio serv : listaServicios) {
+                    if (Integer.parseInt(codigo) == serv.getCodigo_servicio()) {
+                        listaParaPaquete.add(serv);
+                        precio_original += serv.getCosto_servicio(); //Suma el precio
+                    }
+                }
+            }
+
+            //Aplica el descuento
+            double descuento = precio_original * 0.1;
+            double precio_final = precio_original - descuento;
+
+            //Asigna valores al paquete y se lo pasa a la controladora de persistencia para crear
+            paque.setCosto_paquete(precio_final);
+            paque.setPaquete_activo(true);
+            paque.setLista_servicios(listaParaPaquete);
+
+            control.modificarPaquete(paque);
+
+            //Redirecciona al servlet SvServicio
+            response.sendRedirect("SvPaquete");
         }
 
     }

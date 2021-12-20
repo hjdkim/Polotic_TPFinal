@@ -15,7 +15,7 @@
                 response.sendRedirect("login.jsp");
             } else {%>
         
-        <h1>Hello World!</h1>
+        <h1>Nueva Venta</h1>
         
         
         <% } %>

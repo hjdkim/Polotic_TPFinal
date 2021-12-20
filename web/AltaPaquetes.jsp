@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Servicios</title>
+        <title>Paquete nuevo</title>
     </head>
     <body>
 
@@ -19,7 +19,7 @@
                 response.sendRedirect("login.jsp");
             } else {%>
 
-        <h1>Servicios disponibles</h1>
+        <h1>Nuevo paquete</h1>
         <form action="SvPaquete" method="POST">
             <table id="tabla_servicios">
                 <thead>
@@ -51,7 +51,7 @@
                             String descServ = serv.getDescripcion_breve();
                             String destServ = serv.getDestino_servicio();
                             String fechaServ = sdf.format(serv.getFecha_servicio());
-                            double costoServ = serv.getCosto_servico();
+                            double costoServ = serv.getCosto_servicio();
                             Boolean activoServ = serv.isServicio_activo();
 
                             //Filtro para mostrar solo servicios activos
@@ -73,37 +73,10 @@
 
             </table>
             <div>
-                Precio Total:
-                <label for="precio_total"></label>
-                <input type="hidden" name="precio_total" id="precio_total">
-            </div>
-            <div>
-                Descuento:
-                <label for="descuento_paquete"></label>
-                <input type="hidden" name="descuento_paquete" id="descuento_paquete">
-            </div>
-            <div>
-                Precio final:
-                <label for="costo_paquete"></label>
-                <input type="hidden" name="costo_paquete" id="costo_paquete">
-            </div>
-            <div>
                 <button type="submit">Armar</button>
             </div>
         </form>
         <% }%>
-        
-        <script>
-            function calcular() {
-                let total = 0;
-                let tabla = document.getElementById('tabla_servicios')
-                console.log(tabla.rows.length)
-                
-            }
-            
-            calcular();
-            
-        </script>
         
     </body>
 </html>

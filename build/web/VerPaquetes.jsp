@@ -19,6 +19,11 @@
             } else {%>
 
         <h1>Paquetes disponibles</h1>
+        <div>
+            <form action="AltaPaquetes.jsp">
+                <button type="submit">Nuevo Paquete</button>
+            </form>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -48,35 +53,35 @@
                     %>
                     <td><%=codigoPaquete%></td>
                     <td>
-            <table>
-                    <% for (Servicio serv : listaServicios) {
-                    %>
-                <tr>
+                        <table>
+                            <% for (Servicio serv : listaServicios) {
+                            %>
+                            <tr>
+                                <td>
+                                    <%=serv.getNombre()%>
+                                </td>
+                            </tr>
+                            <% }%>
+                        </table>
+                    </td>
+                    <td><%=precioPaquete%></td>
                     <td>
-                        <%=serv.getNombre()%>
+                        <form action="SvModificar" method="POST">
+                            <input type="hidden" name="pedirModificarPaque" value="<%=codigoPaquete%>">
+                            <button type="submit">Modificar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="SvEliminar" method="POST">
+                            <input type="hidden" name="eliminarPaque" value="<%=codigoPaquete%>">
+                            <button type="submit">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
-                <% }%>
-            </table>
-                    </td>
-            <td><%=precioPaquete%></td>
-            <td>
-                <form action="SvModificar" method="POST">
-                    <input type="hidden" name="codigoPaquete" value="<%=codigoPaquete%>">
-                    <button type="submit">Modificar</button>
-                </form>
-            </td>
-            <td>
-                <form action="SvEliminar" method="POST">
-                    <input type="hidden" name="eliminarPaque" value="<%=codigoPaquete%>">
-                    <button type="submit">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-        <% }
+                <% }
             }%>
-    </tbody>
-</table>
-<% }%>
-</body>
+            </tbody>
+        </table>
+        <% }%>
+    </body>
 </html>

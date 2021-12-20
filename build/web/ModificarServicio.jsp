@@ -48,7 +48,7 @@
             </div>
             <div>
                 <input type="hidden" name="modificarServ" value="<%=serv.getCodigo_servicio()%>">
-                <button type="submit">Enviar</button>
+                <button type="submit">Modificar</button>
             </div>
 
         </form>

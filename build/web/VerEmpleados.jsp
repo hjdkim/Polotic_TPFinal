@@ -8,10 +8,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Empleados</title>
     </head>
     <body>
-        
+
         <%
             //Verifica si usuario está guardado como atributo de la session (logeado)
             HttpSession misession = request.getSession();
@@ -19,9 +19,13 @@
             if (usuario == null) {
                 response.sendRedirect("login.jsp");
             } else {%>
-        
+
         <h1>Empleados</h1>
-        
+        <div>
+            <form action="AltaEmpleados.jsp">
+                <button type="submit">Nuevo Empleado</button>
+            </form>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -41,7 +45,7 @@
                 <%
                     //Instancia la lista desde el atributo de la sesion seteado en Servlet.
                     List<Empleado> listaEmpleados = (List) misession.getAttribute("listaEmpleados");
-                    
+
                     //Formatea la fecha y el timezone. (Da un día menos sin el TZ.)
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -62,7 +66,7 @@
                         Usuario usuEmple = emple.getUsu();
                         String nombreUsu = usuEmple.getNombreUsu();
                         String contrasenia = usuEmple.getContrasenia();
-                        
+
                         Boolean activoEmple = emple.isEmpleado_activo();
 
                         //Filtro para mostrar solo servicios activos
@@ -80,7 +84,7 @@
                     <td><%=contrasenia%></td>
                     <td>
                         <form action="SvModificar" method="POST">
-                            <input type="hidden" name="modificarEmple" value="<%=idEmple%>">
+                            <input type="hidden" name="pedirModificarEmple" value="<%=idEmple%>">
                             <button type="submit">Modificar</button>
                         </form>
                     </td>
@@ -92,11 +96,11 @@
                     </td>
                 </tr>
                 <% }
-                        }%>
-                
-                
+                    }%>
+
+
             </tbody>
         </table>
-        <% } %>
+        <% }%>
     </body>
 </html>
