@@ -1,0 +1,3 @@
+- Va a haber un DBA que se encargue de crear el usuario 'admin' para poder ingresar a la página y crear otros usuarios/empleado.
+- La venta es unitaria, es decir, no se pueden realizar ventas con varias unidades de un servicio o de un paquete. Solo se permite la venta de un servicio o un paquete.
+- La eliminación de una venta es lógica. Sin embargo, si se borrara un cliente, un empleado, un servicio o un paquete asociado a una venta, la venta se borra físicamente.
