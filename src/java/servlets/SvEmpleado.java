@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Controladora;
 import logica.Empleado;
-import logica.Servicio;
-import logica.Usuario;
 
 @WebServlet(name = "SvEmpleado", urlPatterns = {"/SvEmpleado"})
 public class SvEmpleado extends HttpServlet {

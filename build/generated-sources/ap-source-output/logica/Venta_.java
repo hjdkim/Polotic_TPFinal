@@ -9,7 +9,7 @@ import logica.Empleado;
 import logica.Paquete;
 import logica.Servicio;
 
-@Generated(value="EclipseLink-2.7.7.v20200504-rNA", date="2021-12-19T21:28:21")
+@Generated(value="EclipseLink-2.7.7.v20200504-rNA", date="2021-12-20T05:48:38")
 @StaticMetamodel(Venta.class)
 public class Venta_ { 
 
@@ -20,5 +20,6 @@ public class Venta_ {
     public static volatile SingularAttribute<Venta, Servicio> venta_servicio;
     public static volatile SingularAttribute<Venta, Paquete> venta_paquete;
     public static volatile SingularAttribute<Venta, Date> fecha_venta;
+    public static volatile SingularAttribute<Venta, Boolean> venta_activo;
 
 }

@@ -3,6 +3,7 @@ package logica;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Venta implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int num_venta;
@@ -21,16 +22,21 @@ public class Venta implements Serializable {
     private Date fecha_venta;
     @Basic
     private String medio_pago;
-    @ManyToOne
+    @ManyToOne(optional = true)
     private Servicio venta_servicio;
+    @ManyToOne(optional = true)
     private Paquete venta_paquete;
+    @ManyToOne
     private Cliente venta_cliente;
+    @ManyToOne
     private Empleado venta_empleado;
-
+    @Basic
+    private boolean venta_activo;
+    
     public Venta() {
     }
 
-    public Venta(int num_venta, Date fecha_venta, String medio_pago, Servicio venta_servicio, Paquete venta_paquete, Cliente venta_cliente, Empleado venta_empleado) {
+    public Venta(int num_venta, Date fecha_venta, String medio_pago, Servicio venta_servicio, Paquete venta_paquete, Cliente venta_cliente, Empleado venta_empleado, boolean venta_activo) {
         this.num_venta = num_venta;
         this.fecha_venta = fecha_venta;
         this.medio_pago = medio_pago;
@@ -38,6 +44,7 @@ public class Venta implements Serializable {
         this.venta_paquete = venta_paquete;
         this.venta_cliente = venta_cliente;
         this.venta_empleado = venta_empleado;
+        this.venta_activo = venta_activo;
     }
 
     public int getNum_venta() {
@@ -95,7 +102,13 @@ public class Venta implements Serializable {
     public void setVenta_empleado(Empleado venta_empleado) {
         this.venta_empleado = venta_empleado;
     }
-    
-    
-    
+
+    public boolean isVenta_activo() {
+        return venta_activo;
+    }
+
+    public void setVenta_activo(boolean venta_activo) {
+        this.venta_activo = venta_activo;
+    }
+
 }

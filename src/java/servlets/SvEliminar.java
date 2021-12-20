@@ -36,7 +36,7 @@ public class SvEliminar extends HttpServlet {
             int idEmple = Integer.parseInt(request.getParameter("eliminarEmple"));
             control.eliminarEmpleado(idEmple);
 
-            //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
+            //Actualiza la lista y lo setea en el atributo "listaEmpleados" de la sesion
             request.getSession().setAttribute("listaEmpleados", control.traerEmpleados());
             response.sendRedirect("SvEmpleado");
         }
@@ -60,23 +60,23 @@ public class SvEliminar extends HttpServlet {
             int codigoPaque = Integer.parseInt(request.getParameter("eliminarPaque"));
             control.eliminarPaquete(codigoPaque);
 
-            //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
+            //Actualiza la lista y lo setea en el atributo "listaPaquetes" de la sesion
             request.getSession().setAttribute("listaPaquetes", control.traerPaquetes());
             response.sendRedirect("SvPaquete");
         }
-        
+
         //Elimina el cliente si se aprieta el botón 'eliminarCli'
         if (request.getParameter("eliminarCli") != null) {
 
-            //Trae el código de servicio como parametro y lo elimina
+            //Trae el código de cliente como parametro y lo elimina
             int idCli = Integer.parseInt(request.getParameter("eliminarCli"));
             control.eliminarCliente(idCli);
 
-            //Actualiza la lista y lo setea en el atributo "listaServicios" de la sesion
+            //Actualiza la lista y lo setea en el atributo "listaClientes" de la sesion
             request.getSession().setAttribute("listaClientes", control.traerClientes());
             response.sendRedirect("SvCliente");
         }
-        
+
     }
 
     @Override

@@ -10,19 +10,18 @@ public class Controladora {
 
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
 
-    public boolean verificarUsuario(String usuario, String contrasenia) {
+    public int verificarUsuario(String usuario, String contrasenia) {
         //Trae la lista de usuarios con controladora de persistencia
         List<Usuario> listaUsuarios = controlPersis.traerUsuarios();
-
         //Si existe una lista de usuarios y si alguno coincide con el usuario y la contraseña, devuelve true.
         if (listaUsuarios != null) {
             for (Usuario usu : listaUsuarios) {
                 if (usu.getNombreUsu().equals(usuario) && usu.getContrasenia().equals(contrasenia)) {
-                    return true;
+                    return usu.getId_Usuario();
                 }
             }
         }
-        return false;
+        return 0;
     }
 
     public void crearEmpleado(String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, Double sueldo, String nombreUsu, String contrasenia) throws ParseException {
@@ -64,11 +63,11 @@ public class Controladora {
     public Empleado traerEmpleado(int id) {
         return controlPersis.traerEmpleado(id);
     }
-    
+
     public void modificarEmpleado(Empleado emple, Usuario usu) {
         controlPersis.modificarEmpleado(emple, usu);
     }
-    
+
     public void eliminarEmpleado(int id) {
         controlPersis.eliminarEmpleado(id);
     }
@@ -113,11 +112,11 @@ public class Controladora {
     public Paquete traerPaquete(int id) {
         return controlPersis.traerPaquete(id);
     }
-    
+
     public void modificarPaquete(Paquete paque) {
         controlPersis.modificarPaquete(paque);
     }
-    
+
     public void eliminarPaquete(int codigoPaque) {
         controlPersis.eliminarPaquete(codigoPaque);
     }
@@ -143,11 +142,11 @@ public class Controladora {
     public List<Cliente> traerClientes() {
         return controlPersis.traerClientes();
     }
-    
+
     public Cliente traerCliente(int id) {
         return controlPersis.traerCliente(id);
     }
-    
+
     public void modificarCliente(Cliente cli) {
         controlPersis.modificarCliente(cli);
     }
@@ -155,5 +154,44 @@ public class Controladora {
     public void eliminarCliente(int id) {
         controlPersis.eliminarCliente(id);
     }
-    
+
+    public void crearVenta(int idEmple, int idCli, String producto, Date fechaVenta, String medioPago) {
+        Venta venta = new Venta();
+
+        //Asigna valores a Venta
+        Empleado emple = traerEmpleado(idEmple);
+        Cliente cli = traerCliente(idCli);
+        venta.setVenta_empleado(emple);
+        venta.setVenta_cliente(cli);
+        venta.setFecha_venta(fechaVenta);
+        venta.setMedio_pago(medioPago);
+        venta.setVenta_activo(true);
+
+        //Verifica si el producto es un servicio o un paquete
+        if (producto.charAt(0) == 's') {
+            Servicio serv = traerServicio(Integer.parseInt(producto.substring(1)));
+            venta.setVenta_servicio(serv);
+        } else {
+            Paquete paque = traerPaquete(Integer.parseInt(producto.substring(1)));
+            venta.setVenta_paquete(paque);
+        }
+
+        controlPersis.crearVenta(venta);
+    }
+
+    public List<Venta> traerVentas() {
+        return controlPersis.traerVentas();
+    }
+
+    public Venta traerVenta(int id) {
+        return controlPersis.traerVenta(id);
+    }
+
+    public void modificarVenta(Venta venta) {
+        controlPersis.modificarVenta(venta);
+    }
+
+    public void eliminarVenta(int id) {
+        controlPersis.eliminarVenta(id);
+    }
 }

@@ -21,6 +21,7 @@ import logica.Empleado;
 import logica.Paquete;
 import logica.Servicio;
 import logica.Usuario;
+import logica.Venta;
 
 @WebServlet(name = "SvModificar", urlPatterns = {"/SvModificar"})
 public class SvModificar extends HttpServlet {
@@ -138,7 +139,7 @@ public class SvModificar extends HttpServlet {
             response.sendRedirect("ModificarEmpleado.jsp");
         }
 
-        //Modifica el empleado si se aprieta el botón 'modificarCli'
+        //Modifica el empleado si se aprieta el botón 'modificarEmple'
         if (request.getParameter("modificarEmple") != null) {
             try {
                 //Trae los parámetros del formulario y modifica al empleado con los mismos.
@@ -193,7 +194,7 @@ public class SvModificar extends HttpServlet {
             response.sendRedirect("ModificarPaquete.jsp");
         }
 
-        //Modifica el servicio si se aprieta el botón 'modificarServ'
+        //Modifica el servicio si se aprieta el botón 'modificarPaque'
         if (request.getParameter("modificarPaque") != null) {
             //Trae los parámetros del formulario y modifica al servicio con los mismos.
             String[] lista_codigos = request.getParameterValues("servicio");
@@ -232,6 +233,70 @@ public class SvModificar extends HttpServlet {
             response.sendRedirect("SvPaquete");
         }
 
+        //Carga la venta a modificar si se aprieta el botón 'pedirModificarVenta'
+        if (request.getParameter("pedirModificarVenta") != null) {
+
+            //Trae venta con el número y la guarda en la sesión
+            int numVenta = Integer.parseInt(request.getParameter("pedirModificarVenta"));
+            Venta venta = control.traerVenta(numVenta);
+            HttpSession misession = request.getSession();
+            misession.setAttribute("ventaAModificar", venta);
+            response.sendRedirect("ModificarVenta.jsp");
+        }
+
+        //Modifica la venta si se aprieta el botón 'modificarVenta'
+        if (request.getParameter("modificarVenta") != null) {
+            try {
+                //Trae los parámetros del formulario y modifica a la venta con los mismos.
+                int idEmple = Integer.parseInt(request.getParameter("vendedor"));
+                int idCli = Integer.parseInt(request.getParameter("cliente"));
+                String producto = request.getParameter("producto");
+                Date fechaVenta = sdf.parse(request.getParameter("fechaVenta"));
+                String medioPago = request.getParameter("medioPago");
+
+                //Trae a la venta con el número de venta
+                Venta venta = control.traerVenta(Integer.parseInt(request.getParameter("modificarVenta")));
+                //Setea los atributos a la venta y se lo pasa a la controladora de persistencia para modificar
+
+                //Asigna valores a Venta
+                Empleado emple = control.traerEmpleado(idEmple);
+                Cliente cli = control.traerCliente(idCli);
+                venta.setVenta_empleado(emple);
+                venta.setVenta_cliente(cli);
+                venta.setFecha_venta(fechaVenta);
+                venta.setMedio_pago(medioPago);
+
+                //Verifica si el producto es un servicio o un paquete
+                if (producto.charAt(0) == 's') {
+                    Servicio serv = control.traerServicio(Integer.parseInt(producto.substring(1)));
+                    venta.setVenta_servicio(serv);
+                    venta.setVenta_paquete(null);
+                } else {
+                    Paquete paque = control.traerPaquete(Integer.parseInt(producto.substring(1)));
+                    venta.setVenta_paquete(paque);
+                    venta.setVenta_servicio(null);
+                }
+
+                control.modificarVenta(venta);
+
+                //Redirecciona al servlet SvCliente
+                response.sendRedirect("SvVerVentas");
+            } catch (ParseException ex) {
+                Logger.getLogger(SvEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        //Carga la venta a eliminar si se aprieta el botón 'eliminarVenta'
+        if (request.getParameter("eliminarVenta") != null) {
+            //Trae venta con el número, la inactiva y se la pasa a la controladora para modificar
+            int numVenta = Integer.parseInt(request.getParameter("eliminarVenta"));
+            Venta venta = control.traerVenta(numVenta);
+            venta.setVenta_activo(false);
+
+            control.modificarVenta(venta);
+
+            response.sendRedirect("SvVerVentas");
+        }
     }
 
     @Override

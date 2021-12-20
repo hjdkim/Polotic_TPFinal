@@ -68,5 +68,13 @@ public class Paquete implements Serializable {
     public void setPaquete_activo(boolean paquete_activo) {
         this.paquete_activo = paquete_activo;
     }
-
+    
+    public String mostrarServicios(List<Servicio> lista_servicios) {
+        String servicios = "";
+        for(Servicio serv : lista_servicios) {
+            servicios = servicios + " + " + serv.getNombre();
+        }
+        return servicios;
+    }
+    
 }
