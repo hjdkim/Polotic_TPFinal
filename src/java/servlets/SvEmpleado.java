@@ -55,7 +55,7 @@ public class SvEmpleado extends HttpServlet {
             String contrasenia = request.getParameter("contrasenia");
 
             control.crearEmpleado(nombre, apellido, direccion, dni, fecha_nac, nacionalidad, celular, email, cargo, sueldo, nombreUsu, contrasenia);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("SvEmpleado");
         } catch (ParseException ex) {
             Logger.getLogger(SvEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }

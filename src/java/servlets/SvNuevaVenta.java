@@ -68,7 +68,7 @@ public class SvNuevaVenta extends HttpServlet {
             List<Venta> listaVentas = control.traerVentas();
             HttpSession misession = request.getSession();
             misession.setAttribute("listaVentas", listaVentas);
-            response.sendRedirect("VerVentas");
+            response.sendRedirect("SvVerVentas");
         } catch (ParseException ex) {
             Logger.getLogger(SvNuevaVenta.class.getName()).log(Level.SEVERE, null, ex);
         }

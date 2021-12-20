@@ -111,11 +111,11 @@
                             <div>
                                 <label class="form-label" for="medioPago">Medio de pago: </label>
                                 <select class="form-select mb-2" name="medioPago" id="medioPago">
-                                    <option value="efectivo">Efectivo</option>
-                                    <option value="debito">Tarjeta de débito</option>
-                                    <option value="credito">Tarjeta de crédito</option>
-                                    <option value="monederoVirtual">Monedero virtual</option>
-                                    <option value="transferencia">Transferencia</option>
+                                    <option value="Efectivo">Efectivo</option>
+                                    <option value="Tarjeta de débito">Tarjeta de débito</option>
+                                    <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+                                    <option value="Monedero virtual">Monedero virtual</option>
+                                    <option value="Transferencia">Transferencia</option>
                                 </select>
                             </div>
                             <div>

@@ -58,7 +58,7 @@
                         </form>
                     </div>
 
-                    <h3 class="mt-0 text-center">Clientes</h3>
+                    <h3 class="mt-0 text-center">Empleados</h3>
 
                     <table class="table">
                         <thead>

@@ -2,11 +2,14 @@ package logica;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,11 +30,14 @@ public class Cliente implements Serializable {
     private boolean cliente_activo;
     @Temporal(TemporalType.DATE)
     private Date fecha_nac;
-
+    @OneToMany(mappedBy = "venta_cliente", cascade = CascadeType.REMOVE)
+    private List<Venta> lista_ventas;
+    
+    
     public Cliente() {
     }
 
-    public Cliente(int id_cliente, String nombre, String apellido, String direccion, String dni, String nacionalidad, String celular, String email, boolean cliente_activo, Date fecha_nac) {
+    public Cliente(int id_cliente, String nombre, String apellido, String direccion, String dni, String nacionalidad, String celular, String email, boolean cliente_activo, Date fecha_nac, List<Venta> lista_ventas) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -42,8 +48,9 @@ public class Cliente implements Serializable {
         this.email = email;
         this.cliente_activo = cliente_activo;
         this.fecha_nac = fecha_nac;
+        this.lista_ventas = lista_ventas;
     }
-
+    
     public int getId_cliente() {
         return id_cliente;
     }
@@ -122,6 +129,14 @@ public class Cliente implements Serializable {
 
     public void setCliente_activo(boolean cliente_activo) {
         this.cliente_activo = cliente_activo;
+    }
+
+    public List<Venta> getLista_ventas() {
+        return lista_ventas;
+    }
+
+    public void setLista_ventas(List<Venta> lista_ventas) {
+        this.lista_ventas = lista_ventas;
     }
     
 }

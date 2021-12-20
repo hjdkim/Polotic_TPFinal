@@ -2,12 +2,14 @@ package logica;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,10 +34,15 @@ public class Empleado implements Serializable {
     private String cargo;
     private double sueldo;
     private boolean empleado_activo;
-    @OneToOne (cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Usuario usu;
+    @OneToMany(mappedBy = "venta_empleado", cascade = CascadeType.REMOVE)
+    private List<Venta> lista_ventas;
 
-    public Empleado(int id_Empleado, String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, double sueldo, boolean empleado_activo, Usuario usu) {
+    public Empleado() {
+    }
+
+    public Empleado(int id_Empleado, String nombre, String apellido, String direccion, String dni, Date fecha_nac, String nacionalidad, String celular, String email, String cargo, double sueldo, boolean empleado_activo, Usuario usu, List<Venta> lista_ventas) {
         this.id_Empleado = id_Empleado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -49,9 +56,7 @@ public class Empleado implements Serializable {
         this.sueldo = sueldo;
         this.empleado_activo = empleado_activo;
         this.usu = usu;
-    }
-
-    public Empleado() {
+        this.lista_ventas = lista_ventas;
     }
 
     public int getId_Empleado() {
@@ -156,6 +161,14 @@ public class Empleado implements Serializable {
 
     public void setUsu(Usuario usu) {
         this.usu = usu;
+    }
+
+    public List<Venta> getLista_ventas() {
+        return lista_ventas;
+    }
+
+    public void setLista_ventas(List<Venta> lista_ventas) {
+        this.lista_ventas = lista_ventas;
     }
 
 }

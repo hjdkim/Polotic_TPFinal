@@ -1,0 +1,4 @@
+Base de datos: agencia_turismo
+URL: "jdbc:mysql://localhost:3306/agencia_turismo?serverTimezone=UTC"
+user: emp_agencia
+password: empleado
